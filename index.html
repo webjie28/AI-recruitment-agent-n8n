@@ -245,14 +245,15 @@
       <!-- Section 2.5: Validation -->
       <div class="section">
         <div class="section-eyebrow">02.5 — Validation</div>
-        <h2 class="section-title">Live Test Case: Validating with a Real CV</h2>
+        <h2 class="section-title">Live Test Cases: Verification &amp; Spam Filtering</h2>
         <p>
-          To test the end-to-end integration under real conditions, I submitted a test email containing my own resume: <strong>LIPALAM_Benjie_CV.pdf</strong>.
+          To verify the robustness of the entire pipeline under real conditions, I conducted two separate integration test runs:
         </p>
+        
+        <h3 style="font-size: 1.15rem; margin: 1.5rem 0 0.5rem; color: var(--ink); font-weight: 600;">Test 1: Validating a Real CV</h3>
         <p>
-          The system triggered instantly. The smart spam filter recognized the incoming application, bypassed the spam blocker, and routed the PDF to the text reader. The Gemini model parsed my contact info, school name, and skills perfectly, logging the data to the spreadsheet and generating a draft response in Gmail in under 5 seconds.
+          First, I submitted a test email containing my own resume: <strong>LIPALAM_Benjie_CV.pdf</strong>. The smart spam filter recognized the keywords, bypassed the spam blocker, and extracted the text. The Gemini model parsed my contact info, school name, and skills perfectly, logging the data to the spreadsheet and generating a draft response in Gmail in under 5 seconds.
         </p>
-
         <div class="frame">
           <div class="frame-bar">
             <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
@@ -260,6 +261,19 @@
           </div>
           <img src="assets/media__1784134936139.png" alt="Successful CV matching parameters" />
           <div class="frame-caption">The n8n keywords filter successfully capturing and parsing the CV attachment.</div>
+        </div>
+
+        <h3 style="font-size: 1.15rem; margin: 2rem 0 0.5rem; color: var(--ink); font-weight: 600;">Test 2: Spam &amp; Promotional Filter Match</h3>
+        <p>
+          Second, I tested the spam block branch by sending an email with keyword triggers (<code>apply cv check</code>) but attaching a non-recruitment PDF report. The AI Agent analyzed the document context, flagged it as spam, and routed it to the **Gmail - Archive/Ignore Spam** node, completing the execution successfully by archiving the message automatically.
+        </p>
+        <div class="frame">
+          <div class="frame-bar">
+            <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
+            <span class="mono">verification — spam-detection-canvas.png</span>
+          </div>
+          <img src="assets/media__1784135577460.png" alt="Successful spam route execution" />
+          <div class="frame-caption">The n8n execution canvas showing a successful run routed to the ignore/archive spam node.</div>
         </div>
       </div>
 

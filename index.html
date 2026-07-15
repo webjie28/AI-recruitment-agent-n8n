@@ -323,18 +323,18 @@
         <!-- Test 4 -->
         <h3 style="font-size: 1.15rem; margin: 2.5rem 0 0.5rem; color: var(--ink); font-weight: 600;">Test 4: Spam &amp; Promotional Filter Match</h3>
         <p>
-          Fourth, I tested the spam filter by sending a promotional email (<code>apply cv check</code>) attaching a non-resume PDF. To pass the file screening check, the filename was named <code>spam_resume.pdf</code>. The AI Agent analyzed the document, classified it as non-recruitment spam, and successfully routed the execution to the **Gmail - Archive/Ignore Spam** node.
+          Fourth, I verified the spam archive route by sending a promotional academic report email, attaching a PDF named <code>junk_resume.pdf.pdf</code> to satisfy the filename check. The AI Agent analyzed the document structure, flagged it as spam, and successfully routed the execution to the **Gmail - Archive/Ignore Spam** node.
         </p>
         <div class="frame">
           <div class="frame-bar">
             <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
-            <span class="mono">verification_04 — spam-email-and-canvas.png</span>
+            <span class="mono">verification_04 — spam-keywords-and-canvas.png</span>
           </div>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1px; background-color: var(--line);">
-            <img src="assets/media__1784135592713.png" alt="Sent promotional test email" style="width: 100%; display: block;" />
-            <img src="assets/media__1784135577460.png" alt="Successful ignore spam execution" style="width: 100%; display: block;" />
+            <img src="assets/media__1784148436421.png" alt="Recruitment Keywords capturing junk resume" style="width: 100%; display: block;" />
+            <img src="assets/media__1784148423939.png" alt="Successful ignore spam execution path" style="width: 100%; display: block;" />
           </div>
-          <div class="frame-caption">Left: The promotional spam email received in the inbox. Right: The final n8n canvas execution showing it successfully archived.</div>
+          <div class="frame-caption">Left: The keywords filter capturing the incoming `junk_resume.pdf.pdf` attachment. Right: The final n8n canvas execution showing it successfully routed to the ignore/archive spam node.</div>
         </div>
       </div>
 

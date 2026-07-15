@@ -278,109 +278,103 @@
         <div class="section-eyebrow">02.5 — Validation</div>
         <h2 class="section-title">End-to-End Integration Testing Journey</h2>
         <p>
-          To ensure the system runs flawlessly under real-world scenarios, I conducted five distinct test runs using real email scenarios and resume PDF structures.
+          To ensure the system runs flawlessly under real-world scenarios, I conducted six distinct validation tests corresponding to each unique routing case and error pathway in n8n.
         </p>
         
         <!-- Test 1 -->
-        <h3 style="font-size: 1.15rem; margin: 1.5rem 0 0.5rem; color: var(--ink); font-weight: 600;">Test 1: Successful Candidate Ingestion (Dynamic Routing Check)</h3>
+        <h3 style="font-size: 1.15rem; margin: 1.5rem 0 0.5rem; color: var(--ink); font-weight: 600;">Test 1: Draft Junior Developer Invitation</h3>
         <p>
-          First, I validated the pipeline's ability to ingest and dynamically route candidates by running two separate test scenarios:
-        </p>
-
-        <!-- Case A -->
-        <h4 style="font-size: 1rem; margin: 1.25rem 0 0.5rem; color: var(--ink); font-weight: 600;">Case A: Junior / Fresh Graduate Route</h4>
-        <p>
-          I submitted a test email containing my own CV: <code>LIPALAM_Benjie_CV.pdf</code>. The keyword filter matched successfully, and Gemini analyzed the profile context. Recognizing the fresh graduate criteria, n8n correctly routed the candidate to the <strong>Gmail - Draft Junior Invitation</strong> branch.
+          First, I submitted a test application with my junior CV: <code>LIPALAM_Benjie_CV.pdf</code>. Recognizing the entry-level criteria, the AI Agent classified the applicant as junior and routed the execution to the **Gmail - Draft Junior Invitation** branch.
         </p>
         <div class="frame">
           <div class="frame-bar">
             <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
-            <span class="mono">verification_01a — keywords-and-canvas-junior.png</span>
+            <span class="mono">verification_01 — junior-draft-route.png</span>
           </div>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1px; background-color: var(--line);">
-            <img src="assets/media__1784134936139.png" alt="Test 1 Case A CV matches keywords" style="width: 100%; display: block;" />
+            <img src="assets/media__1784134936139.png" alt="Test 1 CV matches keywords" style="width: 100%; display: block;" />
             <img src="assets/media__1784134925178.png" alt="Successful Junior CV execution" style="width: 100%; display: block;" />
           </div>
           <div class="frame-caption">Left: The keywords filter capturing my junior CV. Right: The n8n canvas executing successfully through to the Junior response node.</div>
         </div>
 
-        <!-- Case B -->
-        <h4 style="font-size: 1rem; margin: 2rem 0 0.5rem; color: var(--ink); font-weight: 600;">Case B: Senior / Experienced Candidate Route</h4>
+        <!-- Test 2 -->
+        <h3 style="font-size: 1.15rem; margin: 2.5rem 0 0.5rem; color: var(--ink); font-weight: 600;">Test 2: Draft Senior Developer Invitation</h3>
         <p>
-          Next, I tested the experienced candidate route by submitting an application with a senior resume: <code>CV 2024-06 Borromeo, Judith B.pdf</code>. The filter matched, Gemini identified the corporate experience, and n8n dynamically routed the execution to the <strong>Gmail - Draft Senior Invitation</strong> branch.
+          Second, I tested the experienced candidate route by submitting a senior application: <code>CV 2024-06 Borromeo, Judith B.pdf</code>. Gemini identified the professional corporate history, and n8n dynamically routed the execution to the **Gmail - Draft Senior Invitation** branch.
         </p>
         <div class="frame">
           <div class="frame-bar">
             <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
-            <span class="mono">verification_01b — keywords-and-canvas-senior.png</span>
+            <span class="mono">verification_02 — senior-draft-route.png</span>
           </div>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1px; background-color: var(--line);">
-            <img src="assets/media__1784137597039.png" alt="Test 1 Case B CV matches keywords" style="width: 100%; display: block;" />
+            <img src="assets/media__1784137597039.png" alt="Test 2 CV matches keywords" style="width: 100%; display: block;" />
             <img src="assets/media__1784137586404.png" alt="Successful Senior CV execution" style="width: 100%; display: block;" />
           </div>
           <div class="frame-caption">Left: The keywords filter capturing the senior CV. Right: The n8n canvas executing successfully through to the Senior response node.</div>
         </div>
 
-        <!-- Test 2 -->
-        <h3 style="font-size: 1.15rem; margin: 2.5rem 0 0.5rem; color: var(--ink); font-weight: 600;">Test 2: HR Alert &amp; Manual Review Route</h3>
-        <p>
-          Second, I validated the manual HR escalation route by sending an ambiguous profile that requires human review. The AI Agent flagged the application as <code>Needs Review</code>, and n8n correctly routed it to the **Gmail - Draft HR Alert (Needs Review)** node, drafting a detailed notification message to <code>lipalambenjie@gmail.com</code>.
-        </p>
-        <div class="frame">
-          <div class="frame-bar">
-            <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
-            <span class="mono">verification_02 — hr-needs-review-config-and-canvas.png</span>
-          </div>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1px; background-color: var(--line);">
-            <img src="assets/media__1784149506676.png" alt="Draft HR Alert Configuration Settings" style="width: 100%; display: block;" />
-            <img src="assets/media__1784150732398.png" alt="HR Needs Review execution canvas" style="width: 100%; display: block;" />
-          </div>
-          <div class="frame-caption">Left: The Draft HR Alert template configurations in Gmail node. Right: The n8n canvas showing successful execution routing to the HR Alert draft.</div>
-        </div>
-
         <!-- Test 3 -->
-        <h3 style="font-size: 1.15rem; margin: 2.5rem 0 0.5rem; color: var(--ink); font-weight: 600;">Test 3: Spam &amp; Promotional Filter Match</h3>
+        <h3 style="font-size: 1.15rem; margin: 2.5rem 0 0.5rem; color: var(--ink); font-weight: 600;">Test 3: Archive &amp; Ignore Spam</h3>
         <p>
-          Third, I verified the spam archive route by sending a promotional academic report email, attaching a PDF named <code>junk_resume.pdf.pdf</code> to satisfy the filename check. The AI Agent analyzed the document structure, flagged it as spam, and successfully routed the execution to the <strong>Gmail - Archive/Ignore Spam</strong> node.
+          Third, I verified the spam archive route by sending a promotional email attaching a PDF named <code>junk_resume.pdf.pdf</code>. The system flagged the non-recruitment document structure and successfully routed the execution to the **Gmail - Archive/Ignore Spam** node.
         </p>
         <div class="frame">
           <div class="frame-bar">
             <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
-            <span class="mono">verification_03 — spam-keywords-and-canvas.png</span>
+            <span class="mono">verification_03 — spam-ignore-route.png</span>
           </div>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1px; background-color: var(--line);">
             <img src="assets/media__1784148436421.png" alt="Recruitment Keywords capturing junk resume" style="width: 100%; display: block;" />
             <img src="assets/media__1784148423939.png" alt="Successful ignore spam execution path" style="width: 100%; display: block;" />
           </div>
-          <div class="frame-caption">Left: The keywords filter capturing the incoming `junk_resume.pdf.pdf` attachment. Right: The final n8n canvas execution showing it successfully routed to the ignore/archive spam node.</div>
+          <div class="frame-caption">Left: The keywords filter capturing the incoming junk attachment. Right: The final n8n canvas execution showing it successfully routed to the archive spam node.</div>
         </div>
 
         <!-- Test 4 -->
-        <h3 style="font-size: 1.15rem; margin: 2.5rem 0 0.5rem; color: var(--ink); font-weight: 600;">Test 4: Handling Missing Resume Attachments</h3>
+        <h3 style="font-size: 1.15rem; margin: 2.5rem 0 0.5rem; color: var(--ink); font-weight: 600;">Test 4: Draft HR Alert (Needs Review)</h3>
         <p>
-          Fourth, I tested how the system handles candidates who send emails that trigger the recruitment keywords (e.g. <code>apply cv check</code>) but fail to include any PDF attachments. The system successfully routed the email to the False branch of the PDF check node, logging it to the Sheets database as an incomplete application and drafting a request in Gmail for the missing resume.
+          Fourth, I validated the manual review escalation route by sending an ambiguous candidate profile. The AI Agent flagged it as <code>Needs Review</code>, and n8n correctly routed it to the **Gmail - Draft HR Alert (Needs Review)** node, drafting a manual alert notification to the HR team.
         </p>
         <div class="frame">
           <div class="frame-bar">
             <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
-            <span class="mono">verification_04 — missing-attachment-draft.png</span>
+            <span class="mono">verification_04 — hr-needs-review-route.png</span>
           </div>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1px; background-color: var(--line);">
-            <img src="assets/media__1784135329771.png" alt="Test 4 email without attachment" style="width: 100%; display: block;" />
+            <img src="assets/media__1784149506676.png" alt="Draft HR Alert Settings" style="width: 100%; display: block;" />
+            <img src="assets/media__1784150732398.png" alt="HR Needs Review execution canvas" style="width: 100%; display: block;" />
+          </div>
+          <div class="frame-caption">Left: The Draft HR Alert template configuration. Right: The n8n canvas showing successful execution routing to the HR Alert draft.</div>
+        </div>
+
+        <!-- Test 5 -->
+        <h3 style="font-size: 1.15rem; margin: 2.5rem 0 0.5rem; color: var(--ink); font-weight: 600;">Test 5: Log Incomplete &amp; Request Resume</h3>
+        <p>
+          Fifth, I tested the case where a candidate sends an email containing recruitment keywords but misses attaching their resume. The PDF check evaluated to False, and n8n routed the flow to the **DB - Log Incomplete App** Sheets node and drafted a resume request template.
+        </p>
+        <div class="frame">
+          <div class="frame-bar">
+            <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
+            <span class="mono">verification_05 — missing-resume-route.png</span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1px; background-color: var(--line);">
+            <img src="assets/media__1784135329771.png" alt="Test email without attachment" style="width: 100%; display: block;" />
             <img src="assets/media__1784135352584.png" alt="n8n canvas routing to draft resume node" style="width: 100%; display: block;" />
           </div>
           <div class="frame-caption">Left: The incoming email with keyword triggers but no attachment. Right: n8n canvas executing the False route and drafting a resume request.</div>
         </div>
 
-        <!-- Test 5 -->
-        <h3 style="font-size: 1.15rem; margin: 2.5rem 0 0.5rem; color: var(--ink); font-weight: 600;">Test 5: PDF Parsing &amp; Error Handling</h3>
+        <!-- Test 6 -->
+        <h3 style="font-size: 1.15rem; margin: 2.5rem 0 0.5rem; color: var(--ink); font-weight: 600;">Test 6: Read Resume Binary &amp; Parse Error</h3>
         <p>
-          Fifth, I tested the system's resilience by sending a corrupted or incorrectly formatted PDF. The PDF reader node caught the formatting error, showing a red alert state and outputting <code>Invalid PDF structure</code>. This validated the error handling rules.
+          Sixth, I tested the system's error handling by submitting a corrupted PDF binary. The PDF reader node identified the broken structure, threw an exception, and correctly halted execution to prevent bad data from spreading downstream.
         </p>
         <div class="frame">
           <div class="frame-bar">
             <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
-            <span class="mono">verification_05 — invalid-pdf-error.png</span>
+            <span class="mono">verification_06 — invalid-pdf-error.png</span>
           </div>
           <img src="assets/media__1784135436920.png" alt="Invalid PDF structure node error" />
           <div class="frame-caption">The n8n canvas highlighting the PDF parser node failure due to corrupted PDF binary data.</div>

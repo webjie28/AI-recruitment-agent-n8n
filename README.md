@@ -10,17 +10,25 @@ A production-grade recruiter AI agent built using **n8n**, **Google Gemini (1.5 
 *   **Duplicate Candidate Prevention (Upsert)**: Replaces standard row appending with an Upsert action, updating existing rows by matching candidates' email addresses (`Contact`).
 *   **Awaiting Resume Handler**: If a candidate emails without a resume attachment, the system logs their status as `Incomplete - No Resume` and drafts an automated follow-up email.
 *   **24/7 Cloud Run Execution**: Hosted on Railway to run the n8n automation engine constantly in the cloud, processing applications in real-time even when local machines are shut down.
-*   **4-Route Router**: Classifies candidates and creates tailored email drafts in Gmail:
-    *   `Route 0`: Intern/Fresh Grad invitation templates.
-    *   `Route 1`: Senior/Experienced candidate invitations.
-    *   `Route 2`: Spam archiver.
-    *   `Route 3`: Needs Review (routing ambiguous applications to HR for manual inspection).
+*   **4-Route Router**: Classifies candidates and creates tailored email drafts in Gmail using precise Google Sheets field matching:
+    *   `Route 0 (Junior)`: Fresh Grad invitation containing candidate name, course, and university (Thread ID enabled).
+    *   `Route 1 (Senior)`: Technical interview invitation containing candidate name and parsed technical skills (Thread ID enabled).
+    *   `Route 2 (Spam)`: Awtomatikong archiver for non-recruitment spam emails.
+    *   `Route 3 (Needs Review)`: Alerts HR (emailing `lipalambenjie@gmail.com`) with candidate details, summary, and contact information for manual review.
 
 ---
 
 ## 📐 Workflow Architecture
 
-![n8n Recruitment Workflow Layout](assets/media__1784072156548.png)
+![n8n Recruitment Workflow Layout](assets/media__1784137675447.png)
+
+---
+
+## 💡 Key Debugging Insights (Lessons Learned)
+
+During build testing and integration validation, I resolved several core issues that are documented in the project journal:
+*   **Fragile Field-Key Coupling**: Every downstream Gmail draft node hard-coded Sheet column names (including trailing colons like `Name:` or `Skills:`). A single schema difference between the AI Agent output and Sheets would silently break variables. I normalized all expressions and the Gemini JSON schema to maintain identical keys throughout the pipeline.
+*   **Thread ID Alignment**: Aligned Gmail thread responses using `{{ $('Gmail Ingestion').item.json.id }}` to keep draft invites neatly threaded under the candidate's original email.
 
 ---
 

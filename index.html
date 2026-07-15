@@ -290,28 +290,45 @@
         </div>
 
         <!-- Test 2 -->
-        <h3 style="font-size: 1.15rem; margin: 2.5rem 0 0.5rem; color: var(--ink); font-weight: 600;">Test 2: PDF Parsing &amp; Error Handling</h3>
+        <h3 style="font-size: 1.15rem; margin: 2.5rem 0 0.5rem; color: var(--ink); font-weight: 600;">Test 2: Handling Missing Resume Attachments</h3>
         <p>
-          Second, I tested the system's resilience by sending a corrupted or incorrectly formatted PDF. The PDF reader node caught the formatting error, showing a red alert state and outputting <code>Invalid PDF structure</code>. This validated the error handling rules.
+          Second, I tested how the system handles candidates who send emails that trigger the recruitment keywords (e.g. <code>apply cv check</code>) but fail to include any PDF attachments. The system successfully routed the email to the False branch of the PDF check node, logging it to the Sheets database as an incomplete application and drafting a request in Gmail for the missing resume.
         </p>
         <div class="frame">
           <div class="frame-bar">
             <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
-            <span class="mono">verification_02 — invalid-pdf-error.png</span>
+            <span class="mono">verification_02 — missing-attachment-draft.png</span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1px; background-color: var(--line);">
+            <img src="assets/media__1784135329771.png" alt="Test 2 email without attachment" style="width: 100%; display: block;" />
+            <img src="assets/media__1784135352584.png" alt="n8n canvas routing to draft resume node" style="width: 100%; display: block;" />
+          </div>
+          <div class="frame-caption">Left: The incoming email with keyword triggers but no attachment. Right: n8n canvas executing the False route and drafting a resume request.</div>
+        </div>
+
+        <!-- Test 3 -->
+        <h3 style="font-size: 1.15rem; margin: 2.5rem 0 0.5rem; color: var(--ink); font-weight: 600;">Test 3: PDF Parsing &amp; Error Handling</h3>
+        <p>
+          Third, I tested the system's resilience by sending a corrupted or incorrectly formatted PDF. The PDF reader node caught the formatting error, showing a red alert state and outputting <code>Invalid PDF structure</code>. This validated the error handling rules.
+        </p>
+        <div class="frame">
+          <div class="frame-bar">
+            <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
+            <span class="mono">verification_03 — invalid-pdf-error.png</span>
           </div>
           <img src="assets/media__1784135436920.png" alt="Invalid PDF structure node error" />
           <div class="frame-caption">The n8n canvas highlighting the PDF parser node failure due to corrupted PDF binary data.</div>
         </div>
 
-        <!-- Test 3 -->
-        <h3 style="font-size: 1.15rem; margin: 2.5rem 0 0.5rem; color: var(--ink); font-weight: 600;">Test 3: Spam &amp; Promotional Filter Match</h3>
+        <!-- Test 4 -->
+        <h3 style="font-size: 1.15rem; margin: 2.5rem 0 0.5rem; color: var(--ink); font-weight: 600;">Test 4: Spam &amp; Promotional Filter Match</h3>
         <p>
-          Third, I tested the spam filter by sending a promotional email (<code>apply cv check</code>) attaching a non-resume PDF. To pass the file screening check, the filename was named <code>spam_resume.pdf</code>. The AI Agent analyzed the document, classified it as non-recruitment spam, and successfully routed the execution to the **Gmail - Archive/Ignore Spam** node.
+          Fourth, I tested the spam filter by sending a promotional email (<code>apply cv check</code>) attaching a non-resume PDF. To pass the file screening check, the filename was named <code>spam_resume.pdf</code>. The AI Agent analyzed the document, classified it as non-recruitment spam, and successfully routed the execution to the **Gmail - Archive/Ignore Spam** node.
         </p>
         <div class="frame">
           <div class="frame-bar">
             <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
-            <span class="mono">verification_03 — spam-email-and-canvas.png</span>
+            <span class="mono">verification_04 — spam-email-and-canvas.png</span>
           </div>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1px; background-color: var(--line);">
             <img src="assets/media__1784135592713.png" alt="Sent promotional test email" style="width: 100%; display: block;" />

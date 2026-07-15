@@ -324,15 +324,18 @@
         <!-- Test 2 -->
         <h3 style="font-size: 1.15rem; margin: 2.5rem 0 0.5rem; color: var(--ink); font-weight: 600;">Test 2: HR Alert &amp; Manual Review Route</h3>
         <p>
-          Second, I tested the human escalation pathway by submitting an application that could not be clearly classified by the AI Agent. The system captured the profile, recorded it, and correctly routed the candidate to the <strong>Gmail - Draft HR Alert (Needs Review)</strong> branch, generating a detailed manual notification email sent to the HR team.
+          Second, I validated the manual HR escalation route by sending an ambiguous profile that requires human review. The AI Agent flagged the application as <code>Needs Review</code>, and n8n correctly routed it to the **Gmail - Draft HR Alert (Needs Review)** node, drafting a detailed notification message to <code>lipalambenjie@gmail.com</code>.
         </p>
         <div class="frame">
           <div class="frame-bar">
             <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
-            <span class="mono">verification_02 — hr-needs-review-canvas.png</span>
+            <span class="mono">verification_02 — hr-needs-review-config-and-canvas.png</span>
           </div>
-          <img src="assets/media__1784150732398.png" alt="HR Needs Review execution canvas" />
-          <div class="frame-caption">The n8n canvas displaying a successful execution flowing into the Gmail HR Alert draft node.</div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1px; background-color: var(--line);">
+            <img src="assets/media__1784149506676.png" alt="Draft HR Alert Configuration Settings" style="width: 100%; display: block;" />
+            <img src="assets/media__1784150732398.png" alt="HR Needs Review execution canvas" style="width: 100%; display: block;" />
+          </div>
+          <div class="frame-caption">Left: The Draft HR Alert template configurations in Gmail node. Right: The n8n canvas showing successful execution routing to the HR Alert draft.</div>
         </div>
 
         <!-- Test 3 -->

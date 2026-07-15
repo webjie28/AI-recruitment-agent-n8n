@@ -265,7 +265,7 @@
 
         <h3 style="font-size: 1.15rem; margin: 2rem 0 0.5rem; color: var(--ink); font-weight: 600;">Test 2: Spam &amp; Promotional Filter Match</h3>
         <p>
-          Second, I tested the spam block branch by sending an email with keyword triggers (<code>apply cv check</code>) but attaching a non-recruitment PDF report. The AI Agent analyzed the document context, flagged it as spam, and routed it to the **Gmail - Archive/Ignore Spam** node, completing the execution successfully by archiving the message automatically.
+          Second, I tested the spam block branch by sending an email with keyword triggers (<code>apply cv check</code>) and attaching a PDF file. To pass the system's strict file verification check, the attachment's filename must contain <code>resume</code> or <code>cv</code> (e.g., <code>spam_resume.pdf</code>). Once passed, the AI Agent analyzed the document context, flagged it as non-recruitment spam, and routed it to the **Gmail - Archive/Ignore Spam** node, completing the execution by archiving it automatically.
         </p>
         <div class="frame">
           <div class="frame-bar">

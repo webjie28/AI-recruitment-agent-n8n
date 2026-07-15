@@ -6,7 +6,7 @@ A production-grade recruiter AI agent built using **n8n**, **Google Gemini (1.5 
 
 ## 🎯 Features
 *   **Smart Pre-AI Spam Filter**: Blocks promotional emails and newsletters based on keywords and attachment presence before hitting the Gemini API (reducing token costs).
-*   **PDF Resume Extraction**: Ingests candidate resumes in PDF format, parses the text contents, and structures the profile with AI.
+*   **PDF Resume Extraction & Verification**: Ingests candidate resumes in PDF format, verifying that the filename contains keywords like `resume` or `cv` to avoid processing unrelated files, and parses the text contents to structure the profile with AI.
 *   **Duplicate Candidate Prevention (Upsert)**: Replaces standard row appending with an Upsert action, updating existing rows by matching candidates' email addresses (`Contact`).
 *   **Awaiting Resume Handler**: If a candidate emails without a resume attachment, the system logs their status as `Incomplete - No Resume` and drafts an automated follow-up email.
 *   **24/7 Cloud Run Execution**: Hosted on Railway to run the n8n automation engine constantly in the cloud, processing applications in real-time even when local machines are shut down.

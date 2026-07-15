@@ -119,49 +119,10 @@ a {
   margin-bottom: 2rem;
 }
 
-.author-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.85rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--line-soft);
+.author-byline {
+  border-bottom: 1px solid var(--line-soft);
+  padding-bottom: 1rem;
   width: 100%;
-}
-
-.author-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-}
-
-.author-name {
-  color: var(--ink);
-  font-weight: 600;
-  font-size: 1.15rem;
-  line-height: 1.2;
-}
-
-.author-role {
-  color: var(--ink-dim);
-  font-size: 0.88rem;
-  margin-top: 0.15rem;
-  letter-spacing: 0.01em;
-}
-
-.author-avatar {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--signal), #c2410c);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: #1b0e08;
-  font-family: "IBM Plex Mono", monospace;
-  box-shadow: 0 0 16px rgba(255, 138, 92, 0.35);
-  flex-shrink: 0;
 }
 
 /* ---------- META CHIPS ---------- */

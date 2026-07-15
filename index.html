@@ -241,7 +241,6 @@
           </div>
         </div>
       </div>
-
       <!-- Section 2.5: Validation -->
       <div class="section">
         <div class="section-eyebrow">02.5 — Validation</div>
@@ -258,18 +257,13 @@
         <div class="frame">
           <div class="frame-bar">
             <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
-            <span class="mono">verification_01 — keywords-cv-matching.png</span>
+            <span class="mono">verification_01 — keywords-and-canvas.png</span>
           </div>
-          <img src="assets/media__1784134936139.png" alt="Test 1 CV matches keywords" />
-          <div class="frame-caption">The n8n keywords filter successfully capturing and parsing the CV attachment.</div>
-        </div>
-        <div class="frame" style="margin-top: 1rem;">
-          <div class="frame-bar">
-            <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
-            <span class="mono">verification_01 — successful-cv-execution.png</span>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1px; background-color: var(--line);">
+            <img src="assets/media__1784134936139.png" alt="Test 1 CV matches keywords" style="width: 100%; display: block;" />
+            <img src="assets/media__1784134925178.png" alt="Successful CV pipeline execution" style="width: 100%; display: block;" />
           </div>
-          <img src="assets/media__1784134925178.png" alt="Successful CV pipeline execution" />
-          <div class="frame-caption">The full execution path completing successfully all the way to the Gmail Draft response node.</div>
+          <div class="frame-caption">Left: The keywords filter capturing the CV attachment parameters. Right: The full execution path completing successfully.</div>
         </div>
 
         <!-- Test 2 -->
@@ -294,18 +288,13 @@
         <div class="frame">
           <div class="frame-bar">
             <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
-            <span class="mono">verification_03 — spam-gmail-inbox.png</span>
+            <span class="mono">verification_03 — spam-email-and-canvas.png</span>
           </div>
-          <img src="assets/media__1784135592713.png" alt="Sent promotional test email" />
-          <div class="frame-caption">The test promotional spam email received in the Gmail inbox.</div>
-        </div>
-        <div class="frame" style="margin-top: 1rem;">
-          <div class="frame-bar">
-            <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
-            <span class="mono">verification_03 — ignore-spam-canvas.png</span>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1px; background-color: var(--line);">
+            <img src="assets/media__1784135592713.png" alt="Sent promotional test email" style="width: 100%; display: block;" />
+            <img src="assets/media__1784135577460.png" alt="Successful ignore spam execution" style="width: 100%; display: block;" />
           </div>
-          <img src="assets/media__1784135577460.png" alt="Successful ignore spam execution" />
-          <div class="frame-caption">The final n8n execution canvas showing a successful run ending at the ignore/archive spam node.</div>
+          <div class="frame-caption">Left: The promotional spam email received in the inbox. Right: The final n8n canvas execution showing it successfully archived.</div>
         </div>
       </div>
 

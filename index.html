@@ -245,35 +245,81 @@
       <!-- Section 2.5: Validation -->
       <div class="section">
         <div class="section-eyebrow">02.5 — Validation</div>
-        <h2 class="section-title">Live Test Cases: Verification &amp; Spam Filtering</h2>
+        <h2 class="section-title">End-to-End Integration Testing Journey</h2>
         <p>
-          To verify the robustness of the entire pipeline under real conditions, I conducted two separate integration test runs:
+          To ensure the system handles all edge cases and runs perfectly, I put the n8n pipeline through a rigorous 4-stage integration testing process:
         </p>
         
-        <h3 style="font-size: 1.15rem; margin: 1.5rem 0 0.5rem; color: var(--ink); font-weight: 600;">Test 1: Validating a Real CV</h3>
+        <!-- Test 1 -->
+        <h3 style="font-size: 1.15rem; margin: 1.5rem 0 0.5rem; color: var(--ink); font-weight: 600;">Test 1: Successful Candidate CV Ingestion</h3>
         <p>
-          First, I submitted a test email containing my own resume: <strong>LIPALAM_Benjie_CV.pdf</strong>. The smart spam filter recognized the keywords, bypassed the spam blocker, and extracted the text. The Gemini model parsed my contact info, school name, and skills perfectly, logging the data to the spreadsheet and generating a draft response in Gmail in under 5 seconds.
+          First, I submitted a real application containing my CV: <code>LIPALAM_Benjie_CV.pdf</code>. The keyword filter bypassed the spam check, and the text read successfully. The Gemini AI Agent extracted my profile and routed the candidate to the Junior/Senior draft branch.
         </p>
         <div class="frame">
           <div class="frame-bar">
             <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
-            <span class="mono">verification — test-run-cv.png</span>
+            <span class="mono">verification_01 — keywords-cv-matching.png</span>
           </div>
-          <img src="assets/media__1784134936139.png" alt="Successful CV matching parameters" />
+          <img src="assets/media__1784134936139.png" alt="Test 1 CV matches keywords" />
           <div class="frame-caption">The n8n keywords filter successfully capturing and parsing the CV attachment.</div>
         </div>
+        <div class="frame" style="margin-top: 1rem;">
+          <div class="frame-bar">
+            <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
+            <span class="mono">verification_01 — successful-cv-execution.png</span>
+          </div>
+          <img src="assets/media__1784134925178.png" alt="Successful CV pipeline execution" />
+          <div class="frame-caption">The full execution path completing successfully all the way to the Gmail Draft response node.</div>
+        </div>
 
-        <h3 style="font-size: 1.15rem; margin: 2rem 0 0.5rem; color: var(--ink); font-weight: 600;">Test 2: Spam &amp; Promotional Filter Match</h3>
+        <!-- Test 2 -->
+        <h3 style="font-size: 1.15rem; margin: 2.5rem 0 0.5rem; color: var(--ink); font-weight: 600;">Test 2: Missing Resume Attachment (False Branch Routing)</h3>
         <p>
-          Second, I tested the spam block branch by sending an email with keyword triggers (<code>apply cv check</code>) and attaching a PDF file. To pass the system's strict file verification check, the attachment's filename must contain <code>resume</code> or <code>cv</code> (e.g., <code>spam_resume.pdf</code>). Once passed, the AI Agent analyzed the document context, flagged it as non-recruitment spam, and routed it to the **Gmail - Archive/Ignore Spam** node, completing the execution by archiving it automatically.
+          Second, I tested the system's ability to handle emails that match the recruitment keywords but do not attach a resume file. The system successfully executed the False branch of the PDF check node, logged the candidate status as incomplete, and created a Gmail draft requesting the missing resume.
         </p>
         <div class="frame">
           <div class="frame-bar">
             <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
-            <span class="mono">verification — spam-detection-canvas.png</span>
+            <span class="mono">verification_02 — missing-resume-routing.png</span>
           </div>
-          <img src="assets/media__1784135577460.png" alt="Successful spam route execution" />
-          <div class="frame-caption">The n8n execution canvas showing a successful run routed to the ignore/archive spam node.</div>
+          <img src="assets/media__1784134231740.png" alt="Missing resume false branch routing" />
+          <div class="frame-caption">The n8n execution canvas routing the candidate to the False branch due to a missing PDF.</div>
+        </div>
+
+        <!-- Test 3 -->
+        <h3 style="font-size: 1.15rem; margin: 2.5rem 0 0.5rem; color: var(--ink); font-weight: 600;">Test 3: Invalid PDF Structure (Error Detection)</h3>
+        <p>
+          Third, I tested error handling by sending a corrupted/fake PDF file. The PDF parser node successfully caught the format error, outputting <code>Invalid PDF structure</code>. This validated the need to enforce strict PDF file structure parsing.
+        </p>
+        <div class="frame">
+          <div class="frame-bar">
+            <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
+            <span class="mono">verification_03 — invalid-pdf-error.png</span>
+          </div>
+          <img src="assets/media__1784134506535.png" alt="Invalid PDF structure node error" />
+          <div class="frame-caption">The n8n canvas highlighting the PDF parser node failure due to corrupted PDF binary data.</div>
+        </div>
+
+        <!-- Test 4 -->
+        <h3 style="font-size: 1.15rem; margin: 2.5rem 0 0.5rem; color: var(--ink); font-weight: 600;">Test 4: Spam &amp; Promotional Filter Match</h3>
+        <p>
+          Fourth, I successfully tested the spam archive route by sending a keyword-matching email (<code>apply cv check</code>) with a valid PDF file named <code>Software_Quality_Evaluator_Report.pdf</code>. To bypass the PDF parser's validation rules, I renamed it to <code>spam_resume.pdf</code>. The AI Agent successfully recognized the promotional text, flagged it as spam, and routed it to the **Gmail - Archive/Ignore Spam** node.
+        </p>
+        <div class="frame">
+          <div class="frame-bar">
+            <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
+            <span class="mono">verification_04 — spam-gmail-inbox.png</span>
+          </div>
+          <img src="assets/media__1784135592713.png" alt="Sent promotional test email" />
+          <div class="frame-caption">The test promotional spam email received in the Gmail inbox.</div>
+        </div>
+        <div class="frame" style="margin-top: 1rem;">
+          <div class="frame-bar">
+            <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
+            <span class="mono">verification_04 — ignore-spam-canvas.png</span>
+          </div>
+          <img src="assets/media__1784135577460.png" alt="Successful ignore spam execution" />
+          <div class="frame-caption">The final n8n execution canvas showing a successful run ending at the ignore/archive spam node.</div>
         </div>
       </div>
 

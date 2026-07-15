@@ -239,6 +239,37 @@
               <div class="frame-caption">The error panel that revealed the broken node connection.</div>
             </div>
           </div>
+
+          <!-- Step 5 -->
+          <div class="step-card">
+            <div class="node-dot info"><i class="fa-solid fa-envelope"></i></div>
+            <div class="step-header">
+              <div>
+                <span class="step-eyebrow">STEP 05</span>
+                <div class="step-title">Gmail Draft Templates &amp; Key-Field Coupling</div>
+              </div>
+              <span class="step-badge info">resolved</span>
+            </div>
+            <p>
+              When routing candidates, downstream Gmail nodes initially failed to map extracted fields, resulting in empty email drafts.
+            </p>
+            <span class="debug-tag">debug_log:</span>
+            <p style="margin-bottom: 1.25rem">
+              The AI Agent schema output used keys like <code>Is Fresh Grad:</code> (with trailing colons), but downstream nodes expected variables without colons. I aligned all draft variables and Router parameters to use matching keys (e.g., <code>Name:</code>, <code>Course:</code>, <code>University:</code>, <code>Skills:</code>) and set the Thread ID correctly using <code>{{ $('Gmail Ingestion').item.json.id }}</code>.
+            </p>
+            <div class="frame">
+              <div class="frame-bar">
+                <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
+                <span class="mono">gmail-draft-templates-config.png</span>
+              </div>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1px; background-color: var(--line);">
+                <img src="assets/media__1784149480501.png" alt="Draft Junior Invitation Configuration" style="width: 100%; display: block;" />
+                <img src="assets/media__1784149492534.png" alt="Draft Senior Invitation Configuration" style="width: 100%; display: block;" />
+                <img src="assets/media__1784149506676.png" alt="Draft HR Alert Configuration" style="width: 100%; display: block;" />
+              </div>
+              <div class="frame-caption">The finalized configurations for Junior Draft (Left), Senior Draft (Center), and HR Alert (Right).</div>
+            </div>
+          </div>
         </div>
       </div>
       <!-- Section 2.5: Validation -->
@@ -370,9 +401,7 @@
           <img src="assets/media__1784148643020.png" alt="AI Agent live output JSON" />
           <div class="frame-caption">Live, parsed JSON output from the Gemini AI Agent.</div>
         </div>
-      </div>
-
-      <!-- Section 4: Roadmap -->
+      </div>      <!-- Section 4: Roadmap -->
       <div class="section">
         <div class="section-eyebrow">04 — Roadmap</div>
         <h2 class="section-title">Known limitations &amp; next steps</h2>
@@ -388,21 +417,31 @@
           <div class="roadmap-item">
             <span class="box">☐</span>
             <div>
+              <p><strong>Fragile field-key coupling.</strong> Every downstream node hard-codes the exact Sheet column names (including trailing colons), so a single header rename can silently break multiple drafts at once — next: a centralized mapping/normalization step right after the AI Agent output, so only one place needs updating if the schema changes.</p>
+            </div>
+          </div>
+
+          <div class="roadmap-item">
+            <span class="box">☐</span>
+            <div>
               <p><strong>No failure monitoring.</strong> A failed PDF extraction or AI timeout currently fails silently — next: an error branch that alerts Telegram or Slack on any failed run.</p>
             </div>
           </div>
+
           <div class="roadmap-item">
             <span class="box">☐</span>
             <div>
               <p><strong>Static classification logic.</strong> Fresh Grad / Experienced routing uses fixed criteria — next: a configurable rules sheet, reusable across multiple job openings.</p>
             </div>
           </div>
+
           <div class="roadmap-item">
             <span class="box">☐</span>
             <div>
               <p><strong>No candidate scoring.</strong> The system sorts by category, not fit — next: an AI-generated match score (1–10) against job requirements.</p>
             </div>
           </div>
+
           <div class="roadmap-item">
             <span class="box">☐</span>
             <div>
@@ -411,8 +450,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Footer -->
       <footer class="footer">
         © 2026 Benjie Lipalam — built while learning agentic AI workflow design.
       </footer>

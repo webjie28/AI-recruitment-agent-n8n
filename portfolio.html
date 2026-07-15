@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Benjie Lipalam — My First Real AI Agent</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="portfolio.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <header class="header">
+        <div class="status-line mono">
+          <span class="status-dot"></span>
+          workflow.status: production-ready
+        </div>
+        <h1>
+          My First <em>Real</em> AI Agent: Building an End-to-End
+          Recruitment Automation with n8n
+        </h1>
+        <p class="subhead">
+          A behind-the-scenes build log — from a simple 5-node prototype to
+          a resilient, multi-route recruitment pipeline. Every bug included.
+        </p>
+        <div class="author-tag">
+          <div class="author-avatar">BL</div>
+          By <strong>Benjie Lipalam</strong>
+        </div>
+      </header>
+
+      <!-- Meta Chips -->
+      <div class="meta-strip">
+        <div class="chip">
+          <span class="chip-key mono">tool</span>
+          <span class="chip-val">n8n</span>
+        </div>
+        <div class="chip">
+          <span class="chip-key mono">model</span>
+          <span class="chip-val">Google Gemini</span>
+        </div>
+        <div class="chip">
+          <span class="chip-key mono">database</span>
+          <span class="chip-val">Google Sheets</span>
+        </div>
+        <div class="chip">
+          <span class="chip-key mono">role</span>
+          <span class="chip-val">No-Code / Automation Engineer</span>
+        </div>
+      </div>
+
+      <!-- Section 1: Overview -->
+      <div class="section">
+        <div class="section-eyebrow">01 — Overview</div>
+        <h2 class="section-title">What this workflow does</h2>
+        <p>
+          This project is a <strong>recruiter AI agent</strong> that
+          automatically screens incoming resumes from Gmail, extracts and
+          structures candidate data with AI, logs it into a duplicate-free
+          Google Sheets database, and drafts a tailored reply — all without
+          manual intervention.
+        </p>
+
+        <div class="impact-row">
+          <div class="impact-box before">
+            <div class="impact-label mono">before</div>
+            <div class="impact-value">3+ hrs/week</div>
+            <div class="impact-desc">Manual resume screening</div>
+          </div>
+          <div class="impact-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+          <div class="impact-box after">
+            <div class="impact-label mono">after</div>
+            <div class="impact-value">&lt; 5 sec</div>
+            <div class="impact-desc">Fully automated, per application</div>
+          </div>
+        </div>
+
+        <div class="frame">
+          <div class="frame-bar">
+            <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
+            <span class="mono">figure_01 — final-workflow-canvas.png</span>
+          </div>
+          <img src="assets/media__1784072156548.png" alt="Final n8n canvas layout" />
+          <div class="frame-caption">The final layout of the n8n recruitment workflow.</div>
+        </div>
+      </div>
+
+      <!-- Section 2: Debug Log -->
+      <div class="section">
+        <div class="section-eyebrow">02 — Build Log</div>
+        <h2 class="section-title">Key steps &amp; debugging stories</h2>
+        <p>
+          Getting this system to run reliably wasn't a straight line. Below
+          are the key build steps in order, and the real errors I ran into
+          along the way — with how I traced and fixed each one.
+        </p>
+
+        <div class="timeline" style="margin-top: 2rem">
+          <!-- Step 1 -->
+          <div class="step-card">
+            <div class="node-dot signal"><i class="fa-solid fa-filter"></i></div>
+            <div class="step-header">
+              <div>
+                <span class="step-eyebrow">STEP 01</span>
+                <div class="step-title">Smart Pre-AI Spam Filter</div>
+              </div>
+              <span class="step-badge signal">optimization</span>
+            </div>
+            <p>
+              To avoid burning API calls on obvious spam, I added a keyword
+              filter node that runs before the request ever reaches the AI
+              Agent.
+            </p>
+            <span class="debug-tag">debug_log:</span>
+            <p style="margin-bottom: 1.25rem">
+              My own legitimate resume submission was flagged as a false
+              negative. I traced it to a case-sensitivity issue — the
+              filter matched lowercase <i>apply</i>, but my email used
+              <i>Application</i>. Fixed by enabling
+              <strong style="color: var(--ink)">Ignore Case</strong> on the
+              filter condition.
+            </p>
+            <div class="frame">
+              <div class="frame-bar">
+                <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
+                <span class="mono">recruitment-keywords.params</span>
+              </div>
+              <img src="assets/media__1784074156795.png" alt="Recruitment Keywords parameters" />
+              <div class="frame-caption">Enabling "ignore case" for reliable keyword matching.</div>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="step-card">
+            <div class="node-dot danger"><i class="fa-solid fa-clone"></i></div>
+            <div class="step-header">
+              <div>
+                <span class="step-eyebrow">STEP 02</span>
+                <div class="step-title">Duplicate Prevention (Upsert Logic)</div>
+              </div>
+              <span class="step-badge danger">error resolved</span>
+            </div>
+            <p>
+              To prevent duplicate rows when a candidate emails more than
+              once, I switched the Google Sheets node from a plain "Append"
+              to an <strong style="color: var(--ink)">Append or Update Row</strong> operation.
+            </p>
+            <span class="debug-tag">debug_log:</span>
+            <p style="margin-bottom: 1.25rem">
+              n8n threw <code>'columns.matchingColumns' is required</code>
+              — the node had no way to know which existing row to match
+              against. Resolved by setting
+              <strong style="color: var(--ink)">Contact</strong> as the
+              unique matching key, so the workflow now checks for an
+              existing candidate before inserting or updating.
+            </p>
+            <div class="frame">
+              <div class="frame-bar">
+                <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
+                <span class="mono">db-save-update-candidate.error</span>
+              </div>
+              <img src="assets/media__1784091440905.png" alt="Matching columns error" />
+              <div class="frame-caption">The n8n error shown when no matching key was set.</div>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="step-card">
+            <div class="node-dot success"><i class="fa-solid fa-code-branch"></i></div>
+            <div class="step-header">
+              <div>
+                <span class="step-eyebrow">STEP 03</span>
+                <div class="step-title">Syntax Bug in Data Mapping</div>
+              </div>
+              <span class="step-badge success">syntax fixed</span>
+            </div>
+            <p>
+              While writing extracted data into the Skills field, n8n
+              returned an <code>invalid syntax</code> error.
+            </p>
+            <span class="debug-tag">debug_log:</span>
+            <p style="margin-bottom: 1.25rem">
+              The expression was missing a closing brace:
+              <code>{{ JSON.parse($json.output).skills}</code>. Adding the
+              second <code>}}</code> fixed the parsing instantly — a small
+              typo that took the whole branch down until I caught it.
+            </p>
+            <div class="frame">
+              <div class="frame-bar">
+                <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
+                <span class="mono">skills-expression.field</span>
+              </div>
+              <img src="assets/media__1784127608959.png" alt="Skills bracket error" />
+              <div class="frame-caption">The Skills expression field before the fix.</div>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="step-card">
+            <div class="node-dot info"><i class="fa-solid fa-circle-nodes"></i></div>
+            <div class="step-header">
+              <div>
+                <span class="step-eyebrow">STEP 04</span>
+                <div class="step-title">The Mystery Disconnected Node</div>
+              </div>
+              <span class="step-badge info">layout issue</span>
+            </div>
+            <p>
+              After renaming several nodes to clean up the canvas, the
+              Sheets node suddenly stayed grayed out and refused to run.
+            </p>
+            <span class="debug-tag">debug_log:</span>
+            <p style="margin-bottom: 1.25rem">
+              The parameters panel read <code>No input connected</code>.
+              The rename had visually shifted the canvas and silently
+              snapped the wire loose between the AI Agent node and the
+              Sheets node. Reconnecting the two resolved it — a reminder to
+              verify actual wire connections after any layout cleanup.
+            </p>
+            <div class="frame">
+              <div class="frame-bar">
+                <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
+                <span class="mono">sheets-node.status</span>
+              </div>
+              <img src="assets/uploaded_media_1784127311231.png" alt="No input connected screenshot" />
+              <div class="frame-caption">The error panel that revealed the broken node connection.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Outcomes -->
+      <div class="section">
+        <div class="section-eyebrow">03 — Output</div>
+        <h2 class="section-title">Final outcomes</h2>
+        <p>With all four issues resolved, here's what the system delivers today:</p>
+
+        <div class="outcomes-grid">
+          <div class="outcome-card">
+            <i class="fa-solid fa-envelope-open-text"></i>
+            <h3>Smart Gmail Drafts</h3>
+            <p>Routes replies automatically — Fresh Grad, Experienced, or flagged for human review.</p>
+          </div>
+          <div class="outcome-card">
+            <i class="fa-solid fa-table-list"></i>
+            <h3>Structured Logging</h3>
+            <p>Clean candidate data written to Sheets with zero duplicate entries.</p>
+          </div>
+          <div class="outcome-card">
+            <i class="fa-solid fa-paperclip"></i>
+            <h3>Attachment Tracker</h3>
+            <p>Notifies applicants automatically when no resume is attached.</p>
+          </div>
+        </div>
+
+        <div class="frame">
+          <div class="frame-bar">
+            <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
+            <span class="mono">ai-agent-output.json</span>
+          </div>
+          <img src="assets/media__1784127267034.png" alt="AI Agent live output JSON" />
+          <div class="frame-caption">Live, parsed JSON output from the Gemini AI Agent.</div>
+        </div>
+      </div>
+
+      <!-- Section 4: Roadmap -->
+      <div class="section">
+        <div class="section-eyebrow">04 — Roadmap</div>
+        <h2 class="section-title">Known limitations &amp; next steps</h2>
+        <p>
+          This system runs reliably within its current scope, but it isn't
+          "finished" — and I'd rather say so than oversell it. Here's what
+          I'd tackle next for a production environment:
+        </p>
+
+        <div class="roadmap-box">
+          <div class="roadmap-comment">/* backlog — not yet implemented */</div>
+
+          <div class="roadmap-item">
+            <span class="box">☐</span>
+            <div>
+              <p><strong>No failure monitoring.</strong> A failed PDF extraction or AI timeout currently fails silently — next: an error branch that alerts Telegram or Slack on any failed run.</p>
+            </div>
+          </div>
+          <div class="roadmap-item">
+            <span class="box">☐</span>
+            <div>
+              <p><strong>Static classification logic.</strong> Fresh Grad / Experienced routing uses fixed criteria — next: a configurable rules sheet, reusable across multiple job openings.</p>
+            </div>
+          </div>
+          <div class="roadmap-item">
+            <span class="box">☐</span>
+            <div>
+              <p><strong>No candidate scoring.</strong> The system sorts by category, not fit — next: an AI-generated match score (1–10) against job requirements.</p>
+            </div>
+          </div>
+          <div class="roadmap-item">
+            <span class="box">☐</span>
+            <div>
+              <p><strong>Blunt keyword filter.</strong> Reduces API cost, but an oddly worded legitimate application could still slip through — next: a more generous fallback rule.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="footer">
+        © 2026 Benjie Lipalam — built while learning agentic AI workflow design.
+      </footer>
+    </div>
+  </body>
+</html>

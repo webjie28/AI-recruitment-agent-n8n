@@ -25,7 +25,7 @@ A production-grade recruiter AI agent built using **n8n**, **Google Gemini (1.5 
 ---
 
 ## 🛠️ Project Structure
-*   `portfolio.html`: The HTML structure of the project build case study (designed as a premium documentation page).
+*   `index.html`: The HTML structure of the project build case study (designed as a premium documentation page).
 *   `portfolio.css`: Decoupled custom styling for the portfolio page (dark slate layout with custom interactive details).
 *   `assets/`: Local screenshots of n8n parameters, debugging logs, and execution outputs.
 
@@ -34,10 +34,10 @@ A production-grade recruiter AI agent built using **n8n**, **Google Gemini (1.5 
 ## 🔧 Installation & Local Setup
 
 ### 1. View the Portfolio Locally
-Simply open the `portfolio.html` file in any browser to view the interactive project journal:
+Simply open the `index.html` file in any browser to view the interactive project journal:
 ```bash
 # Open using explorer on Windows
-explorer.exe portfolio.html
+explorer.exe index.html
 ```
 
 ### 2. Import the n8n Workflow

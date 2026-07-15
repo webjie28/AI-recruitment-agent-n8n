@@ -125,6 +125,12 @@ a {
   width: 100%;
 }
 
+.author-name {
+  font-weight: 700;
+  color: var(--signal);
+  text-shadow: 0 0 10px rgba(255, 138, 92, 0.45);
+}
+
 /* ---------- META CHIPS ---------- */
 
 .meta-strip {

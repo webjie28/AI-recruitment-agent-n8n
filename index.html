@@ -242,6 +242,27 @@
         </div>
       </div>
 
+      <!-- Section 2.5: Validation -->
+      <div class="section">
+        <div class="section-eyebrow">02.5 — Validation</div>
+        <h2 class="section-title">Live Test Case: Validating with a Real CV</h2>
+        <p>
+          To test the end-to-end integration under real conditions, I submitted a test email containing my own resume: <strong>LIPALAM_Benjie_CV.pdf</strong>.
+        </p>
+        <p>
+          The system triggered instantly. The smart spam filter recognized the incoming application, bypassed the spam blocker, and routed the PDF to the text reader. The Gemini model parsed my contact info, school name, and skills perfectly, logging the data to the spreadsheet and generating a draft response in Gmail in under 5 seconds.
+        </p>
+
+        <div class="frame">
+          <div class="frame-bar">
+            <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
+            <span class="mono">verification — test-run-cv.png</span>
+          </div>
+          <img src="assets/media__1784134936139.png" alt="Successful CV matching parameters" />
+          <div class="frame-caption">The n8n keywords filter successfully capturing and parsing the CV attachment.</div>
+        </div>
+      </div>
+
       <!-- Section 3: Outcomes -->
       <div class="section">
         <div class="section-eyebrow">03 — Output</div>

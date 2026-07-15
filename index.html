@@ -25,42 +25,42 @@
           workflow.status: production-ready
         </div>
         <h1>
-          My First <em>Real</em> AI Agent: Building an End-to-End
-          Recruitment Automation with n8n
+          My First <em>Real</em> AI Agent: Building an End-to-End Recruitment
+          Automation with n8n
         </h1>
         <p class="subhead">
-          A behind-the-scenes build log — from a simple 5-node prototype to
-          a resilient, multi-route recruitment pipeline. Every bug included.
+          A behind-the-scenes build log — from a simple 5-node prototype to a
+          resilient, multi-route recruitment pipeline. Every bug included.
         </p>
-        <div class="author-tag">
+        <div class="author-tag" style="margin-bottom: 2rem;">
           <div class="author-avatar">BL</div>
           By <strong>Benjie Lipalam</strong>
         </div>
-      </header>
 
-      <!-- Meta Chips -->
-      <div class="meta-strip">
-        <div class="chip">
-          <span class="chip-key mono">tool</span>
-          <span class="chip-val">n8n</span>
+        <!-- Meta Chips -->
+        <div class="meta-strip">
+          <div class="chip">
+            <span class="chip-key mono"><span class="dot-indicator" style="background-color: #ff8a5c;"></span>tool</span>
+            <span class="chip-val">n8n</span>
+          </div>
+          <div class="chip">
+            <span class="chip-key mono"><span class="dot-indicator" style="background-color: #818cf8;"></span>model</span>
+            <span class="chip-val">Google Gemini</span>
+          </div>
+          <div class="chip">
+            <span class="chip-key mono"><span class="dot-indicator" style="background-color: #10b981;"></span>database</span>
+            <span class="chip-val">Google Sheets</span>
+          </div>
+          <div class="chip">
+            <span class="chip-key mono"><span class="dot-indicator" style="background-color: #ec4899;"></span>host</span>
+            <span class="chip-val">Railway (24/7)</span>
+          </div>
+          <div class="chip">
+            <span class="chip-key mono"><span class="dot-indicator" style="background-color: #06b6d4;"></span>role</span>
+            <span class="chip-val">Automation Engineer</span>
+          </div>
         </div>
-        <div class="chip">
-          <span class="chip-key mono">model</span>
-          <span class="chip-val">Google Gemini</span>
-        </div>
-        <div class="chip">
-          <span class="chip-key mono">database</span>
-          <span class="chip-val">Google Sheets</span>
-        </div>
-        <div class="chip">
-          <span class="chip-key mono">host</span>
-          <span class="chip-val">Railway (24/7 Cloud)</span>
-        </div>
-        <div class="chip">
-          <span class="chip-key mono">role</span>
-          <span class="chip-val">No-Code / Automation Engineer</span>
-        </div>
-      </div>
+      </header>
 
       <!-- Section 1: Overview -->
       <div class="section">
@@ -80,7 +80,9 @@
             <div class="impact-value">3+ hrs/week</div>
             <div class="impact-desc">Manual resume screening</div>
           </div>
-          <div class="impact-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+          <div class="impact-arrow">
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
           <div class="impact-box after">
             <div class="impact-label mono">after</div>
             <div class="impact-value">&lt; 5 sec</div>
@@ -90,11 +92,17 @@
 
         <div class="frame">
           <div class="frame-bar">
-            <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
+            <span class="frame-dot"></span><span class="frame-dot"></span
+            ><span class="frame-dot"></span>
             <span class="mono">figure_01 — final-workflow-canvas.png</span>
           </div>
-          <img src="assets/media__1784137675447.png" alt="Final n8n canvas layout" />
-          <div class="frame-caption">The final layout of the n8n recruitment workflow.</div>
+          <img
+            src="assets/media__1784137675447.png"
+            alt="Final n8n canvas layout"
+          />
+          <div class="frame-caption">
+            The final layout of the n8n recruitment workflow.
+          </div>
         </div>
       </div>
 
@@ -103,15 +111,17 @@
         <div class="section-eyebrow">02 — Build Log</div>
         <h2 class="section-title">Key steps &amp; debugging stories</h2>
         <p>
-          Getting this system to run reliably wasn't a straight line. Below
-          are the key build steps in order, and the real errors I ran into
-          along the way — with how I traced and fixed each one.
+          Getting this system to run reliably wasn't a straight line. Below are
+          the key build steps in order, and the real errors I ran into along the
+          way — with how I traced and fixed each one.
         </p>
 
         <div class="timeline" style="margin-top: 2rem">
           <!-- Step 1 -->
           <div class="step-card">
-            <div class="node-dot signal"><i class="fa-solid fa-filter"></i></div>
+            <div class="node-dot signal">
+              <i class="fa-solid fa-filter"></i>
+            </div>
             <div class="step-header">
               <div>
                 <span class="step-eyebrow">STEP 01</span>
@@ -127,19 +137,25 @@
             <span class="debug-tag">debug_log:</span>
             <p style="margin-bottom: 1.25rem">
               My own legitimate resume submission was flagged as a false
-              negative. I traced it to a case-sensitivity issue — the
-              filter matched lowercase <i>apply</i>, but my email used
+              negative. I traced it to a case-sensitivity issue — the filter
+              matched lowercase <i>apply</i>, but my email used
               <i>Application</i>. Fixed by enabling
               <strong style="color: var(--ink)">Ignore Case</strong> on the
               filter condition.
             </p>
             <div class="frame">
               <div class="frame-bar">
-                <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
+                <span class="frame-dot"></span><span class="frame-dot"></span
+                ><span class="frame-dot"></span>
                 <span class="mono">recruitment-keywords.params</span>
               </div>
-              <img src="assets/media__1784074156795.png" alt="Recruitment Keywords parameters" />
-              <div class="frame-caption">Enabling "ignore case" for reliable keyword matching.</div>
+              <img
+                src="assets/media__1784074156795.png"
+                alt="Recruitment Keywords parameters"
+              />
+              <div class="frame-caption">
+                Enabling "ignore case" for reliable keyword matching.
+              </div>
             </div>
           </div>
 
@@ -149,37 +165,48 @@
             <div class="step-header">
               <div>
                 <span class="step-eyebrow">STEP 02</span>
-                <div class="step-title">Duplicate Prevention (Upsert Logic)</div>
+                <div class="step-title">
+                  Duplicate Prevention (Upsert Logic)
+                </div>
               </div>
               <span class="step-badge danger">error resolved</span>
             </div>
             <p>
-              To prevent duplicate rows when a candidate emails more than
-              once, I switched the Google Sheets node from a plain "Append"
-              to an <strong style="color: var(--ink)">Append or Update Row</strong> operation.
+              To prevent duplicate rows when a candidate emails more than once,
+              I switched the Google Sheets node from a plain "Append" to an
+              <strong style="color: var(--ink)">Append or Update Row</strong>
+              operation.
             </p>
             <span class="debug-tag">debug_log:</span>
             <p style="margin-bottom: 1.25rem">
               n8n threw <code>'columns.matchingColumns' is required</code>
-              — the node had no way to know which existing row to match
-              against. Resolved by setting
-              <strong style="color: var(--ink)">Contact</strong> as the
-              unique matching key, so the workflow now checks for an
-              existing candidate before inserting or updating.
+              — the node had no way to know which existing row to match against.
+              Resolved by setting
+              <strong style="color: var(--ink)">Contact</strong> as the unique
+              matching key, so the workflow now checks for an existing candidate
+              before inserting or updating.
             </p>
             <div class="frame">
               <div class="frame-bar">
-                <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
+                <span class="frame-dot"></span><span class="frame-dot"></span
+                ><span class="frame-dot"></span>
                 <span class="mono">db-save-update-candidate.error</span>
               </div>
-              <img src="assets/media__1784091440905.png" alt="Matching columns error" />
-              <div class="frame-caption">The n8n error shown when no matching key was set.</div>
+              <img
+                src="assets/media__1784091440905.png"
+                alt="Matching columns error"
+              />
+              <div class="frame-caption">
+                The n8n error shown when no matching key was set.
+              </div>
             </div>
           </div>
 
           <!-- Step 3 -->
           <div class="step-card">
-            <div class="node-dot success"><i class="fa-solid fa-code-branch"></i></div>
+            <div class="node-dot success">
+              <i class="fa-solid fa-code-branch"></i>
+            </div>
             <div class="step-header">
               <div>
                 <span class="step-eyebrow">STEP 03</span>
@@ -188,29 +215,37 @@
               <span class="step-badge success">syntax fixed</span>
             </div>
             <p>
-              While writing extracted data into the Skills field, n8n
-              returned an <code>invalid syntax</code> error.
+              While writing extracted data into the Skills field, n8n returned
+              an <code>invalid syntax</code> error.
             </p>
             <span class="debug-tag">debug_log:</span>
             <p style="margin-bottom: 1.25rem">
               The expression was missing a closing brace:
               <code>{{ JSON.parse($json.output).skills}</code>. Adding the
-              second <code>}}</code> fixed the parsing instantly — a small
-              typo that took the whole branch down until I caught it.
+              second <code>}}</code> fixed the parsing instantly — a small typo
+              that took the whole branch down until I caught it.
             </p>
             <div class="frame">
               <div class="frame-bar">
-                <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
+                <span class="frame-dot"></span><span class="frame-dot"></span
+                ><span class="frame-dot"></span>
                 <span class="mono">skills-expression.field</span>
               </div>
-              <img src="assets/media__1784127608959.png" alt="Skills bracket error" />
-              <div class="frame-caption">The Skills expression field before the fix.</div>
+              <img
+                src="assets/media__1784127608959.png"
+                alt="Skills bracket error"
+              />
+              <div class="frame-caption">
+                The Skills expression field before the fix.
+              </div>
             </div>
           </div>
 
           <!-- Step 4 -->
           <div class="step-card">
-            <div class="node-dot info"><i class="fa-solid fa-circle-nodes"></i></div>
+            <div class="node-dot info">
+              <i class="fa-solid fa-circle-nodes"></i>
+            </div>
             <div class="step-header">
               <div>
                 <span class="step-eyebrow">STEP 04</span>
@@ -219,56 +254,101 @@
               <span class="step-badge info">layout issue</span>
             </div>
             <p>
-              After renaming several nodes to clean up the canvas, the
-              Sheets node suddenly stayed grayed out and refused to run.
+              After renaming several nodes to clean up the canvas, the Sheets
+              node suddenly stayed grayed out and refused to run.
             </p>
             <span class="debug-tag">debug_log:</span>
             <p style="margin-bottom: 1.25rem">
-              The parameters panel read <code>No input connected</code>.
-              The rename had visually shifted the canvas and silently
-              snapped the wire loose between the AI Agent node and the
-              Sheets node. Reconnecting the two resolved it — a reminder to
-              verify actual wire connections after any layout cleanup.
+              The parameters panel read <code>No input connected</code>. The
+              rename had visually shifted the canvas and silently snapped the
+              wire loose between the AI Agent node and the Sheets node.
+              Reconnecting the two resolved it — a reminder to verify actual
+              wire connections after any layout cleanup.
             </p>
             <div class="frame">
               <div class="frame-bar">
-                <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
+                <span class="frame-dot"></span><span class="frame-dot"></span
+                ><span class="frame-dot"></span>
                 <span class="mono">sheets-node.status</span>
               </div>
-              <img src="assets/uploaded_media_1784127311231.png" alt="No input connected screenshot" />
-              <div class="frame-caption">The error panel that revealed the broken node connection.</div>
+              <img
+                src="assets/uploaded_media_1784127311231.png"
+                alt="No input connected screenshot"
+              />
+              <div class="frame-caption">
+                The error panel that revealed the broken node connection.
+              </div>
             </div>
           </div>
 
           <!-- Step 5 -->
           <div class="step-card">
-            <div class="node-dot info"><i class="fa-solid fa-envelope"></i></div>
+            <div class="node-dot info">
+              <i class="fa-solid fa-envelope"></i>
+            </div>
             <div class="step-header">
               <div>
                 <span class="step-eyebrow">STEP 05</span>
-                <div class="step-title">Gmail Draft Templates &amp; Key-Field Coupling</div>
+                <div class="step-title">
+                  Gmail Draft Templates &amp; Key-Field Coupling
+                </div>
               </div>
               <span class="step-badge info">resolved</span>
             </div>
             <p>
-              When routing candidates, downstream Gmail nodes initially failed to map extracted fields, resulting in empty email drafts.
+              When routing candidates, downstream Gmail nodes initially failed
+              to map extracted fields, resulting in empty email drafts.
             </p>
             <span class="debug-tag">debug_log:</span>
             <p style="margin-bottom: 1.25rem">
-              The AI Agent schema output used keys like <code>Is Fresh Grad:</code> (with trailing colons), but downstream nodes expected variables without colons. I aligned all draft variables and Router parameters to use matching keys (e.g., <code>Name:</code>, <code>Course:</code>, <code>University:</code>, <code>Skills:</code>) and set the Thread ID correctly using <code>{{ $('Gmail Ingestion').item.json.id }}</code>.
+              The AI Agent schema output used keys like
+              <code>Is Fresh Grad:</code> (with trailing colons), but downstream
+              nodes expected variables without colons. I aligned all draft
+              variables and Router parameters to use matching keys (e.g.,
+              <code>Name:</code>, <code>Course:</code>,
+              <code>University:</code>, <code>Skills:</code>) and set the Thread
+              ID correctly using
+              <code>{{ $('Gmail Ingestion').item.json.id }}</code>.
             </p>
             <div class="frame">
               <div class="frame-bar">
-                <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
+                <span class="frame-dot"></span><span class="frame-dot"></span
+                ><span class="frame-dot"></span>
                 <span class="mono">gmail-draft-templates-config.png</span>
               </div>
-              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background-color: var(--line);">
-                <img src="assets/media__1784149480501.png" alt="Draft Junior Invitation Configuration" style="width: 100%; display: block;" />
-                <img src="assets/media__1784149492534.png" alt="Draft Senior Invitation Configuration" style="width: 100%; display: block;" />
-                <img src="assets/media__1784143111990.png" alt="Gmail Archive/Ignore Spam Configuration" style="width: 100%; display: block;" />
-                <img src="assets/media__1784149506676.png" alt="Draft HR Alert Configuration" style="width: 100%; display: block;" />
+              <div
+                style="
+                  display: grid;
+                  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+                  gap: 1px;
+                  background-color: var(--line);
+                "
+              >
+                <img
+                  src="assets/media__1784149480501.png"
+                  alt="Draft Junior Invitation Configuration"
+                  style="width: 100%; display: block"
+                />
+                <img
+                  src="assets/media__1784149492534.png"
+                  alt="Draft Senior Invitation Configuration"
+                  style="width: 100%; display: block"
+                />
+                <img
+                  src="assets/media__1784143111990.png"
+                  alt="Gmail Archive/Ignore Spam Configuration"
+                  style="width: 100%; display: block"
+                />
+                <img
+                  src="assets/media__1784149506676.png"
+                  alt="Draft HR Alert Configuration"
+                  style="width: 100%; display: block"
+                />
               </div>
-              <div class="frame-caption">The finalized configurations in order: Junior Draft, Senior Draft, Gmail Ignore Spam, and HR Alert.</div>
+              <div class="frame-caption">
+                The finalized configurations in order: Junior Draft, Senior
+                Draft, Gmail Ignore Spam, and HR Alert.
+              </div>
             </div>
           </div>
         </div>
@@ -278,106 +358,288 @@
         <div class="section-eyebrow">02.5 — Validation</div>
         <h2 class="section-title">End-to-End Integration Testing Journey</h2>
         <p>
-          To ensure the system runs flawlessly under real-world scenarios, I conducted six distinct validation tests corresponding to each unique routing case and error pathway in n8n.
+          To ensure the system runs flawlessly under real-world scenarios, I
+          conducted six distinct validation tests corresponding to each unique
+          routing case and error pathway in n8n.
         </p>
-        
+
         <!-- Test 1 -->
-        <h3 style="font-size: 1.15rem; margin: 1.5rem 0 0.5rem; color: var(--ink); font-weight: 600;">Test 1: Draft Junior Developer Invitation</h3>
+        <h3
+          style="
+            font-size: 1.15rem;
+            margin: 1.5rem 0 0.5rem;
+            color: var(--ink);
+            font-weight: 600;
+          "
+        >
+          Test 1: Draft Junior Developer Invitation
+        </h3>
         <p>
-          First, I submitted a test application with my junior CV: <code>LIPALAM_Benjie_CV.pdf</code>. Recognizing the entry-level criteria, the AI Agent classified the applicant as junior and routed the execution to the **Gmail - Draft Junior Invitation** branch.
+          First, I submitted a test application with my junior CV:
+          <code>LIPALAM_Benjie_CV.pdf</code>. Recognizing the entry-level
+          criteria, the AI Agent classified the applicant as junior and routed
+          the execution to the **Gmail - Draft Junior Invitation** branch.
         </p>
         <div class="frame">
           <div class="frame-bar">
-            <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
+            <span class="frame-dot"></span><span class="frame-dot"></span
+            ><span class="frame-dot"></span>
             <span class="mono">verification_01 — junior-draft-route.png</span>
           </div>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1px; background-color: var(--line);">
-            <img src="assets/media__1784134936139.png" alt="Test 1 CV matches keywords" style="width: 100%; display: block;" />
-            <img src="assets/media__1784134925178.png" alt="Successful Junior CV execution" style="width: 100%; display: block;" />
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+              gap: 1px;
+              background-color: var(--line);
+            "
+          >
+            <img
+              src="assets/media__1784134936139.png"
+              alt="Test 1 CV matches keywords"
+              style="width: 100%; display: block"
+            />
+            <img
+              src="assets/media__1784134925178.png"
+              alt="Successful Junior CV execution"
+              style="width: 100%; display: block"
+            />
           </div>
-          <div class="frame-caption">Left: The keywords filter capturing my junior CV. Right: The n8n canvas executing successfully through to the Junior response node.</div>
+          <div class="frame-caption">
+            Left: The keywords filter capturing my junior CV. Right: The n8n
+            canvas executing successfully through to the Junior response node.
+          </div>
         </div>
 
         <!-- Test 2 -->
-        <h3 style="font-size: 1.15rem; margin: 2.5rem 0 0.5rem; color: var(--ink); font-weight: 600;">Test 2: Draft Senior Developer Invitation</h3>
+        <h3
+          style="
+            font-size: 1.15rem;
+            margin: 2.5rem 0 0.5rem;
+            color: var(--ink);
+            font-weight: 600;
+          "
+        >
+          Test 2: Draft Senior Developer Invitation
+        </h3>
         <p>
-          Second, I tested the experienced candidate route by submitting a senior application: <code>CV 2024-06 Borromeo, Judith B.pdf</code>. Gemini identified the professional corporate history, and n8n dynamically routed the execution to the **Gmail - Draft Senior Invitation** branch.
+          Second, I tested the experienced candidate route by submitting a
+          senior application: <code>CV 2024-06 Borromeo, Judith B.pdf</code>.
+          Gemini identified the professional corporate history, and n8n
+          dynamically routed the execution to the **Gmail - Draft Senior
+          Invitation** branch.
         </p>
         <div class="frame">
           <div class="frame-bar">
-            <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
+            <span class="frame-dot"></span><span class="frame-dot"></span
+            ><span class="frame-dot"></span>
             <span class="mono">verification_02 — senior-draft-route.png</span>
           </div>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1px; background-color: var(--line);">
-            <img src="assets/media__1784137597039.png" alt="Test 2 CV matches keywords" style="width: 100%; display: block;" />
-            <img src="assets/media__1784137586404.png" alt="Successful Senior CV execution" style="width: 100%; display: block;" />
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+              gap: 1px;
+              background-color: var(--line);
+            "
+          >
+            <img
+              src="assets/media__1784137597039.png"
+              alt="Test 2 CV matches keywords"
+              style="width: 100%; display: block"
+            />
+            <img
+              src="assets/media__1784137586404.png"
+              alt="Successful Senior CV execution"
+              style="width: 100%; display: block"
+            />
           </div>
-          <div class="frame-caption">Left: The keywords filter capturing the senior CV. Right: The n8n canvas executing successfully through to the Senior response node.</div>
+          <div class="frame-caption">
+            Left: The keywords filter capturing the senior CV. Right: The n8n
+            canvas executing successfully through to the Senior response node.
+          </div>
         </div>
 
         <!-- Test 3 -->
-        <h3 style="font-size: 1.15rem; margin: 2.5rem 0 0.5rem; color: var(--ink); font-weight: 600;">Test 3: Archive &amp; Ignore Spam</h3>
+        <h3
+          style="
+            font-size: 1.15rem;
+            margin: 2.5rem 0 0.5rem;
+            color: var(--ink);
+            font-weight: 600;
+          "
+        >
+          Test 3: Archive &amp; Ignore Spam
+        </h3>
         <p>
-          Third, I verified the spam archive route by sending a promotional email attaching a PDF named <code>junk_resume.pdf.pdf</code>. The system flagged the non-recruitment document structure and successfully routed the execution to the **Gmail - Archive/Ignore Spam** node.
+          Third, I verified the spam archive route by sending a promotional
+          email attaching a PDF named <code>junk_resume.pdf.pdf</code>. The
+          system flagged the non-recruitment document structure and successfully
+          routed the execution to the **Gmail - Archive/Ignore Spam** node.
         </p>
         <div class="frame">
           <div class="frame-bar">
-            <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
+            <span class="frame-dot"></span><span class="frame-dot"></span
+            ><span class="frame-dot"></span>
             <span class="mono">verification_03 — spam-ignore-route.png</span>
           </div>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1px; background-color: var(--line);">
-            <img src="assets/media__1784148436421.png" alt="Recruitment Keywords capturing junk resume" style="width: 100%; display: block;" />
-            <img src="assets/media__1784148423939.png" alt="Successful ignore spam execution path" style="width: 100%; display: block;" />
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+              gap: 1px;
+              background-color: var(--line);
+            "
+          >
+            <img
+              src="assets/media__1784148436421.png"
+              alt="Recruitment Keywords capturing junk resume"
+              style="width: 100%; display: block"
+            />
+            <img
+              src="assets/media__1784148423939.png"
+              alt="Successful ignore spam execution path"
+              style="width: 100%; display: block"
+            />
           </div>
-          <div class="frame-caption">Left: The keywords filter capturing the incoming junk attachment. Right: The final n8n canvas execution showing it successfully routed to the archive spam node.</div>
+          <div class="frame-caption">
+            Left: The keywords filter capturing the incoming junk attachment.
+            Right: The final n8n canvas execution showing it successfully routed
+            to the archive spam node.
+          </div>
         </div>
 
         <!-- Test 4 -->
-        <h3 style="font-size: 1.15rem; margin: 2.5rem 0 0.5rem; color: var(--ink); font-weight: 600;">Test 4: Draft HR Alert (Needs Review)</h3>
+        <h3
+          style="
+            font-size: 1.15rem;
+            margin: 2.5rem 0 0.5rem;
+            color: var(--ink);
+            font-weight: 600;
+          "
+        >
+          Test 4: Draft HR Alert (Needs Review)
+        </h3>
         <p>
-          Fourth, I validated the manual review escalation route by sending an ambiguous candidate profile. The AI Agent flagged it as <code>Needs Review</code>, and n8n correctly routed it to the **Gmail - Draft HR Alert (Needs Review)** node, drafting a manual alert notification to the HR team.
+          Fourth, I validated the manual review escalation route by sending an
+          ambiguous candidate profile. The AI Agent flagged it as
+          <code>Needs Review</code>, and n8n correctly routed it to the **Gmail
+          - Draft HR Alert (Needs Review)** node, drafting a manual alert
+          notification to the HR team.
         </p>
         <div class="frame">
           <div class="frame-bar">
-            <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
-            <span class="mono">verification_04 — hr-needs-review-route.png</span>
+            <span class="frame-dot"></span><span class="frame-dot"></span
+            ><span class="frame-dot"></span>
+            <span class="mono"
+              >verification_04 — hr-needs-review-route.png</span
+            >
           </div>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1px; background-color: var(--line);">
-            <img src="assets/media__1784149506676.png" alt="Draft HR Alert Settings" style="width: 100%; display: block;" />
-            <img src="assets/media__1784152237849.png" alt="HR Needs Review execution canvas" style="width: 100%; display: block;" />
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+              gap: 1px;
+              background-color: var(--line);
+            "
+          >
+            <img
+              src="assets/media__1784149506676.png"
+              alt="Draft HR Alert Settings"
+              style="width: 100%; display: block"
+            />
+            <img
+              src="assets/media__1784135577460.png"
+              alt="HR Needs Review execution canvas"
+              style="width: 100%; display: block"
+            />
           </div>
-          <div class="frame-caption">Left: The Draft HR Alert template configuration. Right: The n8n canvas showing successful execution routing to the HR Alert draft.</div>
+          <div class="frame-caption">
+            Left: The Draft HR Alert template configuration. Right: The n8n
+            canvas showing successful execution routing to the HR Alert draft.
+          </div>
         </div>
 
         <!-- Test 5 -->
-        <h3 style="font-size: 1.15rem; margin: 2.5rem 0 0.5rem; color: var(--ink); font-weight: 600;">Test 5: Log Incomplete &amp; Request Resume</h3>
+        <h3
+          style="
+            font-size: 1.15rem;
+            margin: 2.5rem 0 0.5rem;
+            color: var(--ink);
+            font-weight: 600;
+          "
+        >
+          Test 5: Log Incomplete &amp; Request Resume
+        </h3>
         <p>
-          Fifth, I tested the case where a candidate sends an email containing recruitment keywords but misses attaching their resume. The PDF check evaluated to False, and n8n routed the flow to the **DB - Log Incomplete App** Sheets node and drafted a resume request template.
+          Fifth, I tested the case where a candidate sends an email containing
+          recruitment keywords but misses attaching their resume. The PDF check
+          evaluated to False, and n8n routed the flow to the **DB - Log
+          Incomplete App** Sheets node and drafted a resume request template.
         </p>
         <div class="frame">
           <div class="frame-bar">
-            <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
+            <span class="frame-dot"></span><span class="frame-dot"></span
+            ><span class="frame-dot"></span>
             <span class="mono">verification_05 — missing-resume-route.png</span>
           </div>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1px; background-color: var(--line);">
-            <img src="assets/media__1784135329771.png" alt="Test email without attachment" style="width: 100%; display: block;" />
-            <img src="assets/media__1784135352584.png" alt="n8n canvas routing to draft resume node" style="width: 100%; display: block;" />
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+              gap: 1px;
+              background-color: var(--line);
+            "
+          >
+            <img
+              src="assets/media__1784135329771.png"
+              alt="Test email without attachment"
+              style="width: 100%; display: block"
+            />
+            <img
+              src="assets/media__1784135352584.png"
+              alt="n8n canvas routing to draft resume node"
+              style="width: 100%; display: block"
+            />
           </div>
-          <div class="frame-caption">Left: The incoming email with keyword triggers but no attachment. Right: n8n canvas executing the False route and drafting a resume request.</div>
+          <div class="frame-caption">
+            Left: The incoming email with keyword triggers but no attachment.
+            Right: n8n canvas executing the False route and drafting a resume
+            request.
+          </div>
         </div>
 
         <!-- Test 6 -->
-        <h3 style="font-size: 1.15rem; margin: 2.5rem 0 0.5rem; color: var(--ink); font-weight: 600;">Test 6: Read Resume Binary &amp; Parse Error</h3>
+        <h3
+          style="
+            font-size: 1.15rem;
+            margin: 2.5rem 0 0.5rem;
+            color: var(--ink);
+            font-weight: 600;
+          "
+        >
+          Test 6: Read Resume Binary &amp; Parse Error
+        </h3>
         <p>
-          Sixth, I tested the system's error handling by submitting a corrupted PDF binary. The PDF reader node identified the broken structure, threw an exception, and correctly halted execution to prevent bad data from spreading downstream.
+          Sixth, I tested the system's error handling by submitting a corrupted
+          PDF binary. The PDF reader node identified the broken structure, threw
+          an exception, and correctly halted execution to prevent bad data from
+          spreading downstream.
         </p>
         <div class="frame">
           <div class="frame-bar">
-            <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
+            <span class="frame-dot"></span><span class="frame-dot"></span
+            ><span class="frame-dot"></span>
             <span class="mono">verification_06 — invalid-pdf-error.png</span>
           </div>
-          <img src="assets/media__1784135436920.png" alt="Invalid PDF structure node error" />
-          <div class="frame-caption">The n8n canvas highlighting the PDF parser node failure due to corrupted PDF binary data.</div>
+          <img
+            src="assets/media__1784135436920.png"
+            alt="Invalid PDF structure node error"
+          />
+          <div class="frame-caption">
+            The n8n canvas highlighting the PDF parser node failure due to
+            corrupted PDF binary data.
+          </div>
         </div>
       </div>
 
@@ -385,56 +647,84 @@
       <div class="section">
         <div class="section-eyebrow">03 — Output</div>
         <h2 class="section-title">Final outcomes</h2>
-        <p>With all five issues resolved, here's what the system delivers today:</p>
+        <p>
+          With all five issues resolved, here's what the system delivers today:
+        </p>
 
         <div class="outcomes-grid">
           <div class="outcome-card">
             <i class="fa-solid fa-envelope-open-text"></i>
             <h3>Smart Gmail Drafts</h3>
-            <p>Routes replies automatically — Fresh Grad, Experienced, or flagged for human review.</p>
+            <p>
+              Routes replies automatically — Fresh Grad, Experienced, or flagged
+              for human review.
+            </p>
           </div>
           <div class="outcome-card">
             <i class="fa-solid fa-table-list"></i>
             <h3>Structured Logging</h3>
-            <p>Clean candidate data written to Sheets with zero duplicate entries.</p>
+            <p>
+              Clean candidate data written to Sheets with zero duplicate
+              entries.
+            </p>
           </div>
           <div class="outcome-card">
             <i class="fa-solid fa-paperclip"></i>
             <h3>Missing Attachment Tracker</h3>
-            <p>Automatically detects emails without attachments, logging them as incomplete and requesting resumes.</p>
+            <p>
+              Automatically detects emails without attachments, logging them as
+              incomplete and requesting resumes.
+            </p>
           </div>
           <div class="outcome-card">
             <i class="fa-solid fa-cloud"></i>
             <h3>24/7 Cloud Run</h3>
-            <p>Deployed on Railway to process applications instantly 24/7, even when local machines are offline.</p>
+            <p>
+              Deployed on Railway to process applications instantly 24/7, even
+              when local machines are offline.
+            </p>
           </div>
         </div>
 
         <div class="frame">
           <div class="frame-bar">
-            <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
+            <span class="frame-dot"></span><span class="frame-dot"></span
+            ><span class="frame-dot"></span>
             <span class="mono">ai-agent-output.json</span>
           </div>
-          <img src="assets/media__1784148643020.png" alt="AI Agent live output JSON" />
-          <div class="frame-caption">Live, parsed JSON output from the Gemini AI Agent.</div>
+          <img
+            src="assets/media__1784148643020.png"
+            alt="AI Agent live output JSON"
+          />
+          <div class="frame-caption">
+            Live, parsed JSON output from the Gemini AI Agent.
+          </div>
         </div>
 
         <div class="frame">
           <div class="frame-bar">
-            <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
+            <span class="frame-dot"></span><span class="frame-dot"></span
+            ><span class="frame-dot"></span>
             <span class="mono">railway-deployment-status</span>
           </div>
-          <img src="assets/media__1784150732398.png" alt="Railway deployment status online" />
-          <div class="frame-caption">The active n8n instance hosted on Railway, running 24/7 in the cloud.</div>
+          <img
+            src="assets/media__1784150732398.png"
+            alt="Railway deployment status online"
+          />
+          <div class="frame-caption">
+            The active n8n instance hosted on Railway, running 24/7 in the
+            cloud.
+          </div>
         </div>
-      </div>      <!-- Section 4: Roadmap -->
+      </div>
+      <!-- Section 4: Roadmap -->
       <div class="section">
         <div class="section-eyebrow">04 — Roadmap</div>
         <h2 class="section-title">Known limitations &amp; next steps</h2>
         <p>
           This system runs reliably within its current scope, but it isn't
-          "finished" — and I'd rather say so than oversell it. Here's what
-          I'd tackle next for a production environment:
+          "finished" — and I'd rather say so than oversell it. Here's what I'd
+          tackle next for a production environment:
         </p>
 
         <div class="roadmap-box">
@@ -443,35 +733,58 @@
           <div class="roadmap-item">
             <span class="box">☐</span>
             <div>
-              <p><strong>Fragile field-key coupling.</strong> Every downstream node hard-codes the exact Sheet column names (including trailing colons), so a single header rename can silently break multiple drafts at once — next: a centralized mapping/normalization step right after the AI Agent output, so only one place needs updating if the schema changes.</p>
+              <p>
+                <strong>Fragile field-key coupling.</strong> Every downstream
+                node hard-codes the exact Sheet column names (including trailing
+                colons), so a single header rename can silently break multiple
+                drafts at once — next: a centralized mapping/normalization step
+                right after the AI Agent output, so only one place needs
+                updating if the schema changes.
+              </p>
             </div>
           </div>
 
           <div class="roadmap-item">
             <span class="box">☐</span>
             <div>
-              <p><strong>No failure monitoring.</strong> A failed PDF extraction or AI timeout currently fails silently — next: an error branch that alerts Telegram or Slack on any failed run.</p>
+              <p>
+                <strong>No failure monitoring.</strong> A failed PDF extraction
+                or AI timeout currently fails silently — next: an error branch
+                that alerts Telegram or Slack on any failed run.
+              </p>
             </div>
           </div>
 
           <div class="roadmap-item">
             <span class="box">☐</span>
             <div>
-              <p><strong>Static classification logic.</strong> Fresh Grad / Experienced routing uses fixed criteria — next: a configurable rules sheet, reusable across multiple job openings.</p>
+              <p>
+                <strong>Static classification logic.</strong> Fresh Grad /
+                Experienced routing uses fixed criteria — next: a configurable
+                rules sheet, reusable across multiple job openings.
+              </p>
             </div>
           </div>
 
           <div class="roadmap-item">
             <span class="box">☐</span>
             <div>
-              <p><strong>No candidate scoring.</strong> The system sorts by category, not fit — next: an AI-generated match score (1–10) against job requirements.</p>
+              <p>
+                <strong>No candidate scoring.</strong> The system sorts by
+                category, not fit — next: an AI-generated match score (1–10)
+                against job requirements.
+              </p>
             </div>
           </div>
 
           <div class="roadmap-item">
             <span class="box">☐</span>
             <div>
-              <p><strong>Blunt keyword filter.</strong> Reduces API cost, but an oddly worded legitimate application could still slip through — next: a more generous fallback rule.</p>
+              <p>
+                <strong>Blunt keyword filter.</strong> Reduces API cost, but an
+                oddly worded legitimate application could still slip through —
+                next: a more generous fallback rule.
+              </p>
             </div>
           </div>
         </div>

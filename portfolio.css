@@ -122,7 +122,6 @@ a {
 .author-tag {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
   gap: 0.85rem;
   padding-top: 1.5rem;
   border-top: 1px solid var(--line-soft);

@@ -277,13 +277,27 @@
         <div class="section-eyebrow">02.5 — Validation</div>
         <h2 class="section-title">End-to-End Integration Testing Journey</h2>
         <p>
-          To ensure the system runs flawlessly under real-world scenarios, I conducted three distinct test runs using real email scenarios and resume PDF structures.
+          To ensure the system runs flawlessly under real-world scenarios, I conducted four distinct test runs using real email scenarios and resume PDF structures.
         </p>
         
         <!-- Test 1 -->
-        <h3 style="font-size: 1.15rem; margin: 1.5rem 0 0.5rem; color: var(--ink); font-weight: 600;">Test 1: Successful Candidate Ingestion (Dynamic Routing Check)</h3>
+        <h3 style="font-size: 1.15rem; margin: 1.5rem 0 0.5rem; color: var(--ink); font-weight: 600;">Test 1: PDF Parsing &amp; Error Handling</h3>
         <p>
-          First, I validated the pipeline's ability to ingest and dynamically route candidates by running two separate test scenarios:
+          First, I tested the system's resilience by sending a corrupted or incorrectly formatted PDF. The PDF reader node caught the formatting error, showing a red alert state and outputting <code>Invalid PDF structure</code>. This validated the error handling rules.
+        </p>
+        <div class="frame">
+          <div class="frame-bar">
+            <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
+            <span class="mono">verification_01 — invalid-pdf-error.png</span>
+          </div>
+          <img src="assets/media__1784135436920.png" alt="Invalid PDF structure node error" />
+          <div class="frame-caption">The n8n canvas highlighting the PDF parser node failure due to corrupted PDF binary data.</div>
+        </div>
+
+        <!-- Test 2 -->
+        <h3 style="font-size: 1.15rem; margin: 2.5rem 0 0.5rem; color: var(--ink); font-weight: 600;">Test 2: Successful Candidate Ingestion (Dynamic Routing Check)</h3>
+        <p>
+          Second, I validated the pipeline's ability to ingest and dynamically route candidates by running two separate test scenarios:
         </p>
 
         <!-- Case A -->
@@ -294,10 +308,10 @@
         <div class="frame">
           <div class="frame-bar">
             <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
-            <span class="mono">verification_01a — keywords-and-canvas-junior.png</span>
+            <span class="mono">verification_02a — keywords-and-canvas-junior.png</span>
           </div>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1px; background-color: var(--line);">
-            <img src="assets/media__1784134936139.png" alt="Test 1 Case A CV matches keywords" style="width: 100%; display: block;" />
+            <img src="assets/media__1784134936139.png" alt="Test 2 Case A CV matches keywords" style="width: 100%; display: block;" />
             <img src="assets/media__1784134925178.png" alt="Successful Junior CV execution" style="width: 100%; display: block;" />
           </div>
           <div class="frame-caption">Left: The keywords filter capturing my junior CV. Right: The n8n canvas executing successfully through to the Junior response node.</div>
@@ -311,44 +325,30 @@
         <div class="frame">
           <div class="frame-bar">
             <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
-            <span class="mono">verification_01b — keywords-and-canvas-senior.png</span>
+            <span class="mono">verification_02b — keywords-and-canvas-senior.png</span>
           </div>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1px; background-color: var(--line);">
-            <img src="assets/media__1784137597039.png" alt="Test 1 Case B CV matches keywords" style="width: 100%; display: block;" />
+            <img src="assets/media__1784137597039.png" alt="Test 2 Case B CV matches keywords" style="width: 100%; display: block;" />
             <img src="assets/media__1784137586404.png" alt="Successful Senior CV execution" style="width: 100%; display: block;" />
           </div>
           <div class="frame-caption">Left: The keywords filter capturing the senior CV. Right: The n8n canvas executing successfully through to the Senior response node.</div>
         </div>
 
-        <!-- Test 2 -->
-        <h3 style="font-size: 1.15rem; margin: 2.5rem 0 0.5rem; color: var(--ink); font-weight: 600;">Test 2: Handling Missing Resume Attachments</h3>
+        <!-- Test 3 -->
+        <h3 style="font-size: 1.15rem; margin: 2.5rem 0 0.5rem; color: var(--ink); font-weight: 600;">Test 3: Handling Missing Resume Attachments</h3>
         <p>
-          Second, I tested how the system handles candidates who send emails that trigger the recruitment keywords (e.g. <code>apply cv check</code>) but fail to include any PDF attachments. The system successfully routed the email to the False branch of the PDF check node, logging it to the Sheets database as an incomplete application and drafting a request in Gmail for the missing resume.
+          Third, I tested how the system handles candidates who send emails that trigger the recruitment keywords (e.g. <code>apply cv check</code>) but fail to include any PDF attachments. The system successfully routed the email to the False branch of the PDF check node, logging it to the Sheets database as an incomplete application and drafting a request in Gmail for the missing resume.
         </p>
         <div class="frame">
           <div class="frame-bar">
             <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
-            <span class="mono">verification_02 — missing-attachment-draft.png</span>
+            <span class="mono">verification_03 — missing-attachment-draft.png</span>
           </div>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1px; background-color: var(--line);">
-            <img src="assets/media__1784135329771.png" alt="Test 2 email without attachment" style="width: 100%; display: block;" />
+            <img src="assets/media__1784135329771.png" alt="Test 3 email without attachment" style="width: 100%; display: block;" />
             <img src="assets/media__1784135352584.png" alt="n8n canvas routing to draft resume node" style="width: 100%; display: block;" />
           </div>
           <div class="frame-caption">Left: The incoming email with keyword triggers but no attachment. Right: n8n canvas executing the False route and drafting a resume request.</div>
-        </div>
-
-        <!-- Test 3 -->
-        <h3 style="font-size: 1.15rem; margin: 2.5rem 0 0.5rem; color: var(--ink); font-weight: 600;">Test 3: PDF Parsing &amp; Error Handling</h3>
-        <p>
-          Third, I tested the system's resilience by sending a corrupted or incorrectly formatted PDF. The PDF reader node caught the formatting error, showing a red alert state and outputting <code>Invalid PDF structure</code>. This validated the error handling rules.
-        </p>
-        <div class="frame">
-          <div class="frame-bar">
-            <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
-            <span class="mono">verification_03 — invalid-pdf-error.png</span>
-          </div>
-          <img src="assets/media__1784135436920.png" alt="Invalid PDF structure node error" />
-          <div class="frame-caption">The n8n canvas highlighting the PDF parser node failure due to corrupted PDF binary data.</div>
         </div>
 
         <!-- Test 4 -->

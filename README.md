@@ -9,6 +9,7 @@ A production-grade recruiter AI agent built using **n8n**, **Google Gemini (1.5 
 *   **PDF Resume Extraction**: Ingests candidate resumes in PDF format, parses the text contents, and structures the profile with AI.
 *   **Duplicate Candidate Prevention (Upsert)**: Replaces standard row appending with an Upsert action, updating existing rows by matching candidates' email addresses (`Contact`).
 *   **Awaiting Resume Handler**: If a candidate emails without a resume attachment, the system logs their status as `Incomplete - No Resume` and drafts an automated follow-up email.
+*   **24/7 Cloud Run Execution**: Hosted on Railway to run the n8n automation engine constantly in the cloud, processing applications in real-time even when local machines are shut down.
 *   **4-Route Router**: Classifies candidates and creates tailored email drafts in Gmail:
     *   `Route 0`: Intern/Fresh Grad invitation templates.
     *   `Route 1`: Senior/Experienced candidate invitations.
